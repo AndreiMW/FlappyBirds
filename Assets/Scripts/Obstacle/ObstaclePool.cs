@@ -25,6 +25,7 @@ public class ObstaclePool : ObjectPool<ObstacleGroup> {
 	}
 
 	protected override void OnGet(ObstacleGroup pooled) {
+		pooled.AddRandomY();
 		pooled.gameObject.SetActive(true);
 	}
 
