@@ -5,11 +5,13 @@
  * Copyright (c) 2023 Avangarde Software. All rights reserved. 
  */
 
+using System;
 using UnityEngine;
 
 namespace Obstacle {
 	public class ObstacleGroup : MonoBehaviour {
 		private Vector3 _spawnPoint;
+		public event Action<ObstacleGroup> OnOutOfBounds;
 
 		#region Public
 	
@@ -22,6 +24,16 @@ namespace Obstacle {
 			this.transform.position = this._spawnPoint;
 		}
 	
+		#endregion
+		
+		#region Collision
+
+		private void OnTriggerEnter(Collider other) {
+			if (other.CompareTag("ResetObstacle")) {
+				this.OnOutOfBounds?.Invoke(this);
+			}
+		}
+		
 		#endregion
 	}
 }
