@@ -23,7 +23,7 @@ namespace Managers {
 
 		private void Update() {
 			if (Input.GetKeyDown(KeyCode.A)) {
-				this.StartGame();
+				this.ResetGame();
 			}
 		}
 
@@ -35,6 +35,12 @@ namespace Managers {
 		public void EndGame() {
 			this._obstacleManager.StopSpawningObstacles();
 			this._birdController.DisableGravity();
+			UIManager.Instance.ShowDeathScreen(ScoreManager.Instance.GetCurrentScore());
+		}
+
+		public void ResetGame() {
+			this._birdController.Reset();
+			this.StartGame();
 		}
 		
 	}
