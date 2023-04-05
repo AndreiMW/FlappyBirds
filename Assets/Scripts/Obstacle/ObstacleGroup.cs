@@ -6,15 +6,26 @@
  */
 
 using System;
-
+using System.Globalization;
 using UnityEngine;
 
 using Random = UnityEngine.Random;
 
 namespace Obstacle {
 	public class ObstacleGroup : MonoBehaviour {
+		private bool _shouldMove;
 		private Vector3 _spawnPoint;
 		public event Action<ObstacleGroup> OnOutOfBounds;
+		
+		#region Lifecycle
+		
+		private void FixedUpdate() {
+			if (this._shouldMove) {
+				this.transform.position += Vector3.right * -4f * Time.fixedDeltaTime;	
+			}
+		}
+		
+		#endregion
 
 		#region Public
 	
@@ -40,6 +51,20 @@ namespace Obstacle {
 		/// </summary>
 		public void ResetPosition() {
 			this.transform.position = this._spawnPoint;
+		}
+		
+		/// <summary>
+		/// Enable moving for the group.
+		/// </summary>
+		public void EnableMove() {
+			this._shouldMove = true;
+		}
+
+		/// <summary>
+		/// Disable moving for the group.
+		/// </summary>
+		public void DisableMove() {
+			this._shouldMove = false;
 		}
 	
 		#endregion
