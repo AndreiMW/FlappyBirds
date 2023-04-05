@@ -46,6 +46,20 @@ namespace Managers {
 		public void ShowDeathScreen(int highScore) {
 			this._deathScreenView.Show(highScore);
 		}
+
+		/// <summary>
+		/// Show the pause button.
+		/// </summary>
+		public void ShowPauseButton() {
+			this._pauseButton.gameObject.SetActive(true);	
+		}
+		
+		/// <summary>
+		/// Hide the pause button.
+		/// </summary>
+		public void HidePauseButton() {
+			this._pauseButton.gameObject.SetActive(false);	
+		}
 		
 		#endregion
 
@@ -55,10 +69,12 @@ namespace Managers {
 			GameManager.Instance.Resume();
 			GameManager.Instance.ResetGameWithoutStarting();
 			this._mainMenuView.Show();
+			this.HidePauseButton();
 		}
 
 		private void PauseButtonListener() {
 			this._pauseMenu.Show();
+			this.HidePauseButton();
 			GameManager.Instance.Pause();
 		}
 

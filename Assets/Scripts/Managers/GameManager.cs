@@ -6,6 +6,7 @@
  */
 
 
+using System;
 using Scripts;
 using UnityEngine;
 
@@ -20,15 +21,21 @@ namespace Managers {
 		[SerializeField]
 		private BirdController _birdController;
 
+		private void Awake() {
+			Application.targetFrameRate = 60;
+		}
+
 		public void StartGame() {
 			this._obstacleManager.StartSpawningObstacles();
 			this._birdController.EnableGravity();
+			UIManager.Instance.ShowPauseButton();
 		}
 
 		public void EndGame() {
 			this._obstacleManager.StopSpawningObstacles();
 			this._birdController.DisableGravity();
 			UIManager.Instance.ShowDeathScreen(ScoreManager.Instance.GetCurrentScore());
+			UIManager.Instance.HidePauseButton();
 		}
 
 		public void ResetGame() {
