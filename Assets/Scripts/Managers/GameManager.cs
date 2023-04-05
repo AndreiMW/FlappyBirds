@@ -9,6 +9,7 @@
 using System;
 using Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Managers {
 	public class GameManager : MonoBehaviour {
@@ -28,6 +29,10 @@ namespace Managers {
 			Application.targetFrameRate = 60;
 		}
 
+		private void OnDestroy() {
+			s_instance = null;
+		}
+
 		public void StartGame() {
 			this._obstacleManager.StartSpawningObstacles();
 			this._birdController.EnableGravity();
@@ -44,8 +49,7 @@ namespace Managers {
 		}
 
 		public void ResetGame() {
-			this.ResetGameWithoutStarting();
-			this.StartGame();
+			SceneManager.LoadScene("MainScene");
 		}
 
 		public void ResetGameWithoutStarting() {

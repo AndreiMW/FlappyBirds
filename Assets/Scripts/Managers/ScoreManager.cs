@@ -10,8 +10,8 @@ using UnityEngine;
 
 namespace Managers {
 	public class ScoreManager : MonoBehaviour {
-		private static ScoreManager s_Instance;
-		public static ScoreManager Instance => s_Instance ??= FindObjectOfType<ScoreManager>();
+		private static ScoreManager s_instance;
+		public static ScoreManager Instance => s_instance ??= FindObjectOfType<ScoreManager>();
 
 		[SerializeField]
 		private ScorePresenter _scorePresenter;
@@ -22,6 +22,10 @@ namespace Managers {
 
 		private void Awake() {
 			this._scoreModel = new ScoreModel(this._scorePresenter);
+		}
+		
+		private void OnDestroy() {
+			s_instance = null;
 		}
 
 		#endregion

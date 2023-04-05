@@ -14,8 +14,8 @@ using UnityEngine.UI;
 
 namespace Managers {
 	public class UIManager : MonoBehaviour {
-		private static UIManager s_Instance;
-		public static UIManager Instance => s_Instance ??= FindObjectOfType<UIManager>();
+		private static UIManager s_instance;
+		public static UIManager Instance => s_instance ??= FindObjectOfType<UIManager>();
 
 		[SerializeField]
 		private MainMenuView _mainMenuView;
@@ -37,6 +37,10 @@ namespace Managers {
 		private void Awake() {
 			this._pauseButton.onClick.AddListener(this.PauseButtonListener);
 			this._pauseMenu.ShowMainMenu += this.HandleShowMainMenu;
+		}
+		
+		private void OnDestroy() {
+			s_instance = null;
 		}
 
 		#endregion
@@ -78,9 +82,7 @@ namespace Managers {
 
 		private void HandleShowMainMenu() {
 			GameManager.Instance.ResumeOnlyWithTimeScale();
-			GameManager.Instance.ResetGameWithoutStarting();
-			this._mainMenuView.Show();
-			this.HidePauseButton();
+			GameManager.Instance.ResetGame();
 		}
 
 		private void PauseButtonListener() {
