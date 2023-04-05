@@ -42,7 +42,7 @@ namespace Obstacle {
 		/// Add random Y.
 		/// </summary>
 		public void AddRandomY() {
-			float randomY = Random.Range(-1.3f, 1.3f);
+			float randomY = Random.Range(-1f, 2f);
 			this.transform.position += Vector3.up * randomY;
 		}
 		
