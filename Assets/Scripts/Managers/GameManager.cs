@@ -49,6 +49,7 @@ namespace Managers {
 		}
 
 		public void ResetGameWithoutStarting() {
+			this._backgroundScroll.DisableMove();
 			this._birdController.Reset();
 			this._obstacleManager.StopSpawningObstacles();
 			this._birdController.DisableGravity();
