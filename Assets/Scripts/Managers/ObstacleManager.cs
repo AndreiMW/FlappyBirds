@@ -41,10 +41,10 @@ namespace Managers {
 		}
 
 		public void StartSpawningObstacles() {
-			this._shouldSpawnObstacles = true;
 			foreach (ObstacleGroup currentActiveObstacle in this._currentActiveObstacles) {
 				this._obstaclePool.Return(currentActiveObstacle);
 			}
+			this._shouldSpawnObstacles = true;
 			this._currentActiveObstacles.Clear();
 		}
 
