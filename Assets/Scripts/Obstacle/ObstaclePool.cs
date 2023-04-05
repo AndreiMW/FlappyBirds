@@ -17,10 +17,11 @@ public class ObstaclePool : ObjectPool<ObstacleGroup> {
 	private Transform _obstacleSpawnPoint;
 	
 	protected override ObstacleGroup CreatePooled() {
-		ObstacleGroup obstacleMovement = GameObject.Instantiate(this._obstaclePrefab);
-		obstacleMovement.Init(this._obstacleSpawnPoint.transform.position);
-		obstacleMovement.gameObject.SetActive(false);
-		return obstacleMovement;
+		ObstacleGroup obstacleGroup = GameObject.Instantiate(this._obstaclePrefab);
+		obstacleGroup.Init(this._obstacleSpawnPoint.transform.position);
+		obstacleGroup.gameObject.SetActive(false);
+		
+		return obstacleGroup;
 	}
 
 	protected override void OnGet(ObstacleGroup pooled) {
