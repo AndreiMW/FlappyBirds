@@ -66,8 +66,11 @@ namespace Managers {
 		/// Resume the game.
 		/// </summary>
 		public void Resume() {
-			UIManager.Instance.ShowPauseButton();
-			Time.timeScale = 1f;
+			UIManager.Instance.StartResumeCountdown(() => {
+				Time.timeScale = 1f;
+				UIManager.Instance.ShowPauseButton();
+			});
+			
 		}
 		
 	}

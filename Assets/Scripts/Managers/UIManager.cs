@@ -24,6 +24,9 @@ namespace Managers {
 		private DeathScreenView _deathScreenView;
 
 		[SerializeField]
+		private CountDownView _countDownView;
+
+		[SerializeField]
 		private Button _pauseButton;
 
 		[SerializeField]
@@ -59,6 +62,14 @@ namespace Managers {
 		/// </summary>
 		public void HidePauseButton() {
 			this._pauseButton.gameObject.SetActive(false);	
+		}
+
+		/// <summary>
+		/// Start the resume countdown sequence.
+		/// </summary>
+		/// <param name="completionCallback">The completion callback.</param>
+		public void StartResumeCountdown(Action completionCallback = null) {
+			this._countDownView.StartCountdown(completionCallback);
 		}
 		
 		#endregion
