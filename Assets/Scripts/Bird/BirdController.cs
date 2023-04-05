@@ -7,6 +7,7 @@
 
 using System;
 using Managers;
+using Scripts.Bird;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -14,7 +15,10 @@ namespace Scripts {
 	public class BirdController : MonoBehaviour {
 		[SerializeField]
 		private int _jumpForce;
-		
+
+		[SerializeField]
+		private BirdSounds _birdSounds;
+
 		private Rigidbody _rigidbody;
 		private Vector3 _originalPos;
 		private Quaternion _originalRot;
@@ -35,6 +39,7 @@ namespace Scripts {
 			} 
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
 				this._rigidbody.AddForce(Vector3.up * this._jumpForce, ForceMode.Impulse);
+				this._birdSounds.PlayFlyClip();
 			}
 		}
 
@@ -70,11 +75,13 @@ namespace Scripts {
 		private void OnTriggerEnter(Collider other) {
 			if (other.CompareTag("Score")) {
 				ScoreManager.Instance.AddScore();
+				this._birdSounds.PlayPointClip();
 			}
 		}
 
 		private void OnCollisionEnter(Collision collision) {
 			if (collision.gameObject.CompareTag("Pipe")) {
+				this._birdSounds.PlayHitClip();
 				GameManager.Instance.EndGame();
 				ScoreManager.Instance.CompareCurrentScoreToHighScore();
 			}
