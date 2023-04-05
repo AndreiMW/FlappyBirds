@@ -59,6 +59,7 @@ namespace Scripts {
 		/// </summary>
 		public void EnableGravity() {
 			this._rigidbody.useGravity = true;
+			this._rigidbody.isKinematic = false;
 		}
 
 		/// <summary>
@@ -66,6 +67,7 @@ namespace Scripts {
 		/// </summary>
 		public void DisableGravity() {
 			this._rigidbody.useGravity = false;
+			this._rigidbody.isKinematic = true;
 		}
 		
 		#endregion
