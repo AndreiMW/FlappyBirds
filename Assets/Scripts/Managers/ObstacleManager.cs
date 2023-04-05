@@ -17,20 +17,39 @@ namespace Managers {
 
 		private List<ObstacleGroup> _currentActiveObstacles;
 
+		[SerializeField]
+		private float _timeBetweenObstacles = 2f;
+
+		private float _timeToNextObstacle;
+		
+		private bool _shouldSpawnObstacles;
+
 		private void Awake() {
 			this._currentActiveObstacles = new List<ObstacleGroup>();
+			this._timeToNextObstacle = this._timeBetweenObstacles;
+		}
+
+		private void Update() {
+			if (!this._shouldSpawnObstacles) {
+				return;
+			}
+			this._timeToNextObstacle -= Time.deltaTime;
+			if (this._timeToNextObstacle <= 0) {
+				this.GetObstacle();
+				this._timeToNextObstacle = this._timeBetweenObstacles;
+			}
 		}
 
 		public void StartSpawningObstacles() {
+			this._shouldSpawnObstacles = true;
 			foreach (ObstacleGroup currentActiveObstacle in this._currentActiveObstacles) {
 				this._obstaclePool.Return(currentActiveObstacle);
 			}
 			this._currentActiveObstacles.Clear();
-			InvokeRepeating(nameof(this.GetObstacle), 0f, 2f);
 		}
 
 		public void StopSpawningObstacles() {
-			CancelInvoke();
+			this._shouldSpawnObstacles = false;
 			foreach (ObstacleGroup activeObstacle in this._currentActiveObstacles) {
 				activeObstacle.DisableMove();	
 			}
