@@ -16,6 +16,8 @@ namespace UI.Score {
 		public int CurrentScore => this._currentScore;
 		
 		private int _currentHighScore;
+		public int CurrentHighscore => this._currentHighScore;
+		
 		public ScoreModel(ScorePresenter presenter) {
 			this._scorePresenter = presenter;
 			this._currentHighScore = PlayerPrefs.GetInt(HIGHSCORE_KEY, 0);
