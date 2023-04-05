@@ -25,11 +25,12 @@ namespace Managers {
 			foreach (ObstacleGroup currentActiveObstacle in this._currentActiveObstacles) {
 				this._obstaclePool.Return(currentActiveObstacle);
 			}
+			this._currentActiveObstacles.Clear();
 			InvokeRepeating(nameof(this.GetObstacle), 0f, 2f);
 		}
 
 		public void StopSpawningObstacles() {
-			CancelInvoke(nameof(this.GetObstacle));
+			CancelInvoke();
 			foreach (ObstacleGroup activeObstacle in this._currentActiveObstacles) {
 				activeObstacle.DisableMove();	
 			}
