@@ -7,6 +7,7 @@
 
 using System;
 using Managers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,11 +19,20 @@ namespace UI.MainMenu {
 		[SerializeField]
 		private Button _exitButton;
 
+		[SerializeField]
+		private TMP_Text _highscore;
+
+		
+
 		#region Lifecycle
 		
 		private void Awake() {
 			this._playButton.onClick.AddListener(this.PlayButtonListener);
 			this._exitButton.onClick.AddListener(this.ExitButtonListener);
+		}
+
+		private void Start() {
+			this.ShowHighscore();
 		}
 		
 		#endregion
@@ -34,6 +44,7 @@ namespace UI.MainMenu {
 		/// </summary>
 		public void Show() {
 			this.FadeInAnimation(0.2f);
+			this.ShowHighscore();
 		}
 		
 		#endregion
@@ -47,6 +58,17 @@ namespace UI.MainMenu {
 
 		private void ExitButtonListener() {
 			Application.Quit();
+		}
+
+		private void ShowHighscore() {
+			int currentHighscore = ScoreManager.Instance.GetCurrentHighscore();
+			if (currentHighscore > 0) {
+				string highscoreText = $"Highscore: {currentHighscore}";
+				this._highscore.alpha = 1f;
+				this._highscore.SetText(highscoreText);
+			} else {
+				this._highscore.alpha = 0f;
+			}
 		}
 		
 		#endregion
