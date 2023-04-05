@@ -70,7 +70,13 @@ namespace Managers {
 				Time.timeScale = 1f;
 				UIManager.Instance.ShowPauseButton();
 			});
-			
+		}
+
+		/// <summary>
+		/// Resume by just setting the time scale back to 1.
+		/// </summary>
+		public void ResumeOnlyWithTimeScale() {
+			Time.timeScale = 1f;
 		}
 		
 	}

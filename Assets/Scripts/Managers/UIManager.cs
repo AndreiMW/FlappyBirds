@@ -77,7 +77,7 @@ namespace Managers {
 		#region Private
 
 		private void HandleShowMainMenu() {
-			GameManager.Instance.Resume();
+			GameManager.Instance.ResumeOnlyWithTimeScale();
 			GameManager.Instance.ResetGameWithoutStarting();
 			this._mainMenuView.Show();
 			this.HidePauseButton();
