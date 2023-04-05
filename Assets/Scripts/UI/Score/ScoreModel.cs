@@ -49,6 +49,7 @@ namespace UI.Score {
 			if (this._currentScore > this._currentHighScore) {
 				this._currentHighScore = this._currentScore;
 				PlayerPrefs.SetInt(HIGHSCORE_KEY, this._currentHighScore);
+				this._scorePresenter.UpdateHighScore(this._currentHighScore);
 			}
 		}
 
