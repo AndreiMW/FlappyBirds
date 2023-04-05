@@ -27,6 +27,17 @@ namespace UI.MainMenu {
 		
 		#endregion
 		
+		#region Public
+		
+		/// <summary>
+		/// Show the main menu.
+		/// </summary>
+		public void Show() {
+			this.FadeInAnimation(0.2f);
+		}
+		
+		#endregion
+		
 		#region Private
 
 		private void PlayButtonListener() {
