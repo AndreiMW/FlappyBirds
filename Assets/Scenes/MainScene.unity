@@ -2476,6 +2476,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playButton: {fileID: 1966687185}
   _exitButton: {fileID: 370976990}
+  _highscore: {fileID: 1820802941}
 --- !u!225 &1944063725
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2676,6 +2677,10 @@ PrefabInstance:
     - target: {fileID: 8818484410279679911, guid: 3c0dc58b261063d40a71d2906973edf0, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818484410279679911, guid: 3c0dc58b261063d40a71d2906973edf0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 8818484410279679911, guid: 3c0dc58b261063d40a71d2906973edf0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
