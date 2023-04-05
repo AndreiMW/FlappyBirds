@@ -8,6 +8,7 @@
 using System;
 using Managers;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Scripts {
 	public class BirdController : MonoBehaviour {
@@ -29,7 +30,10 @@ namespace Scripts {
 		}
 
 		private void Update() {
-			if (Input.GetKeyDown(KeyCode.Space)) {
+			if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.IsPointerOverGameObject(0)) {
+				return;
+			} 
+			if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
 				this._rigidbody.AddForce(Vector3.up * this._jumpForce, ForceMode.Impulse);
 			}
 		}
