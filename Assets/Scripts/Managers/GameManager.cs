@@ -6,7 +6,6 @@
  */
 
 
-using System;
 using Scripts;
 using UnityEngine;
 
@@ -21,12 +20,6 @@ namespace Managers {
 		[SerializeField]
 		private BirdController _birdController;
 
-		private void Update() {
-			if (Input.GetKeyDown(KeyCode.A)) {
-				this.ResetGame();
-			}
-		}
-
 		public void StartGame() {
 			this._obstacleManager.StartSpawningObstacles();
 			this._birdController.EnableGravity();
@@ -39,8 +32,28 @@ namespace Managers {
 		}
 
 		public void ResetGame() {
-			this._birdController.Reset();
+			this.ResetGameWithoutStarting();
 			this.StartGame();
+		}
+
+		public void ResetGameWithoutStarting() {
+			this._birdController.Reset();
+			this._obstacleManager.StopSpawningObstacles();
+			this._birdController.DisableGravity();
+		}
+
+		/// <summary>
+		/// Pause the game.
+		/// </summary>
+		public void Pause() {
+			Time.timeScale = 0f;
+		}
+
+		/// <summary>
+		/// Resume the game.
+		/// </summary>
+		public void Resume() {
+			Time.timeScale = 1f;
 		}
 		
 	}
