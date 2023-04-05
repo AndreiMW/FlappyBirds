@@ -15,11 +15,16 @@ namespace Scripts {
 		private int _jumpForce;
 		
 		private Rigidbody _rigidbody;
+		private Vector3 _originalPos;
+		private Quaternion _originalRot;
 		
 		#region Lifecycle
 
 		private void Awake() {
 			this._rigidbody = this.GetComponent<Rigidbody>();
+			this._originalPos = this.transform.position;
+			this._originalRot = this.transform.rotation;
+			
 			this.DisableGravity();
 		}
 
@@ -32,6 +37,13 @@ namespace Scripts {
 		#endregion
 		
 		#region Public
+
+		public void Reset() {
+			this._rigidbody.velocity = Vector3.zero;
+			this._rigidbody.angularVelocity = Vector3.zero;
+			this.transform.position = this._originalPos;
+			this.transform.rotation = this._originalRot;
+		}
 
 		/// <summary>
 		/// Enable gravity.
