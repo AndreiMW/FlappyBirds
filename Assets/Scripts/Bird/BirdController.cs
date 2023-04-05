@@ -22,11 +22,14 @@ namespace Scripts {
 		private Rigidbody _rigidbody;
 		private Vector3 _originalPos;
 		private Quaternion _originalRot;
+
+		private BoxCollider _collider;
 		
 		#region Lifecycle
 
 		private void Awake() {
 			this._rigidbody = this.GetComponent<Rigidbody>();
+			this._collider = this.GetComponent<BoxCollider>();
 			this._originalPos = this.transform.position;
 			this._originalRot = this.transform.rotation;
 			
@@ -60,6 +63,7 @@ namespace Scripts {
 		public void EnableGravity() {
 			this._rigidbody.useGravity = true;
 			this._rigidbody.isKinematic = false;
+			this._collider.enabled = true;
 		}
 
 		/// <summary>
@@ -68,6 +72,7 @@ namespace Scripts {
 		public void DisableGravity() {
 			this._rigidbody.useGravity = false;
 			this._rigidbody.isKinematic = true;
+			this._collider.enabled = false;
 		}
 		
 		#endregion
