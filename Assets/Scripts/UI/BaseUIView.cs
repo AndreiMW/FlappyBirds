@@ -37,7 +37,7 @@ namespace UI {
 		/// <param name="duration">The duration of the fade.</param>
 		/// <param name="completionCallback">What should this method do after completion.</param>
 		public virtual void FadeInAnimation(float duration, Action completionCallback = null) {
-			this._canvasGroup.DOFade(1f, duration).OnComplete(TriggerCallback);
+			this._canvasGroup.DOFade(1f, duration).OnComplete(TriggerCallback).SetUpdate(true);
 
 			void TriggerCallback() {
 				this._canvasGroup.interactable = true;
@@ -52,7 +52,7 @@ namespace UI {
 		/// <param name="duration">The duration of the fade.</param>
 		/// <param name="completionCallback">What should this method do after completion.</param>
 		public virtual void FadeOutAnimation(float duration, Action completionCallback = null) {
-			this._canvasGroup.DOFade(0f, duration).OnComplete(TriggerCallback);
+			this._canvasGroup.DOFade(0f, duration).OnComplete(TriggerCallback).SetUpdate(true);
 			
 			void TriggerCallback() {
 				this._canvasGroup.interactable = false;
@@ -83,7 +83,7 @@ namespace UI {
 		/// <param name="duration">The duration of the scale.</param>
 		/// <param name="completionCallback">What should this method do after completion.</param>
 		public void ScaleInAniamation(float duration, Action completionCallback = null) {
-			this._canvasGroup.transform.DOScale(1f, duration).OnComplete(TriggerCallback);
+			this._canvasGroup.transform.DOScale(1f, duration).OnComplete(TriggerCallback).SetUpdate(true);
 			
 			void TriggerCallback() {
 				completionCallback?.Invoke();
@@ -96,7 +96,7 @@ namespace UI {
 		/// <param name="duration">The duration of the scale.</param>
 		/// <param name="completionCallback">What should this method do after completion.</param>
 		public void ScaleOutAniamation(float duration, Action completionCallback = null) {
-			this._canvasGroup.transform.DOScale(0f, duration).OnComplete(TriggerCallback);
+			this._canvasGroup.transform.DOScale(0f, duration).OnComplete(TriggerCallback).SetUpdate(true);
 			
 			void TriggerCallback() {
 				completionCallback?.Invoke();
@@ -110,7 +110,7 @@ namespace UI {
 		/// <param name="duration">The duration of the scale.</param>
 		/// <param name="completionCallback">What should this method do after completion</param>
 		public void ScaleAnimation(float value, float duration, Action completionCallback = null) {
-			this._canvasGroup.transform.DOScale(value, duration).OnComplete(TriggerCallback);
+			this._canvasGroup.transform.DOScale(value, duration).OnComplete(TriggerCallback).SetUpdate(true);
 			
 			void TriggerCallback() {
 				completionCallback?.Invoke();
