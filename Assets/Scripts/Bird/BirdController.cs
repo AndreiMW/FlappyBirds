@@ -20,6 +20,7 @@ namespace Scripts {
 
 		private void Awake() {
 			this._rigidbody = this.GetComponent<Rigidbody>();
+			this.DisableGravity();
 		}
 
 		private void Update() {
@@ -28,6 +29,24 @@ namespace Scripts {
 			}
 		}
 
+		#endregion
+		
+		#region Public
+
+		/// <summary>
+		/// Enable gravity.
+		/// </summary>
+		public void EnableGravity() {
+			this._rigidbody.useGravity = true;
+		}
+
+		/// <summary>
+		/// Disable gravity.
+		/// </summary>
+		public void DisableGravity() {
+			this._rigidbody.useGravity = false;
+		}
+		
 		#endregion
 		
 		#region Collision
@@ -40,7 +59,7 @@ namespace Scripts {
 
 		private void OnCollisionEnter(Collision collision) {
 			if (collision.gameObject.CompareTag("Pipe")) {
-				Debug.Log("END");
+				GameManager.Instance.EndGame();
 				ScoreManager.Instance.CompareCurrentScoreToHighScore();
 			}
 		}
