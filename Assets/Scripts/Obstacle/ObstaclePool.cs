@@ -6,6 +6,7 @@
  */
 
 using Obstacle;
+using Pool;
 using UnityEngine;
 
 public class ObstaclePool : ObjectPool<ObstacleGroup> {
