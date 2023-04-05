@@ -41,6 +41,14 @@ namespace Managers {
 		public void CompareCurrentScoreToHighScore() {
 			this._scoreModel.CompareCurrentScoreWithHighscore();
 		}
+
+		/// <summary>
+		/// Get the current score.
+		/// </summary>
+		/// <returns>The current score.</returns>
+		public int GetCurrentScore() {
+			return this._scoreModel.CurrentScore;
+		}
 		
 		#endregion
 	}
