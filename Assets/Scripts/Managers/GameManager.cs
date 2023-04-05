@@ -21,6 +21,9 @@ namespace Managers {
 		[SerializeField]
 		private BirdController _birdController;
 
+		[SerializeField]
+		private BackgroundScroll _backgroundScroll;
+
 		private void Awake() {
 			Application.targetFrameRate = 60;
 		}
@@ -29,11 +32,13 @@ namespace Managers {
 			this._obstacleManager.StartSpawningObstacles();
 			this._birdController.EnableGravity();
 			UIManager.Instance.ShowPauseButton();
+			this._backgroundScroll.EnableMove();
 		}
 
 		public void EndGame() {
 			this._obstacleManager.StopSpawningObstacles();
 			this._birdController.DisableGravity();
+			this._backgroundScroll.DisableMove();
 			UIManager.Instance.ShowDeathScreen(ScoreManager.Instance.GetCurrentScore());
 			UIManager.Instance.HidePauseButton();
 		}
