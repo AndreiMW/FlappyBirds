@@ -13,6 +13,8 @@ namespace UI.Score {
 		private ScorePresenter _scorePresenter;
 		
 		private int _currentScore;
+		public int CurrentScore => this._currentScore;
+		
 		private int _currentHighScore;
 		public ScoreModel(ScorePresenter presenter) {
 			this._scorePresenter = presenter;
