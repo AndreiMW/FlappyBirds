@@ -40,6 +40,7 @@ namespace Managers {
 		/// </summary>
 		public void CompareCurrentScoreToHighScore() {
 			this._scoreModel.CompareCurrentScoreWithHighscore();
+			this._scoreModel.ResetScore();
 		}
 
 		/// <summary>
