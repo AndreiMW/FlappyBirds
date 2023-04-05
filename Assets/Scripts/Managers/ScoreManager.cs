@@ -51,6 +51,14 @@ namespace Managers {
 			return this._scoreModel.CurrentScore;
 		}
 		
+		/// <summary>
+		/// Get the current highscore.
+		/// </summary>
+		/// <returns></returns>
+		public int GetCurrentHighscore() {
+			return this._scoreModel.CurrentHighscore;
+		}
+		
 		#endregion
 	}
 }
