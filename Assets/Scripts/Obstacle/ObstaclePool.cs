@@ -16,9 +16,12 @@ public class ObstaclePool : ObjectPool<ObstacleGroup> {
 	[SerializeField]
 	private Transform _obstacleSpawnPoint;
 	
+	[SerializeField]
+	private int _obstacleSpeed;
+	
 	protected override ObstacleGroup CreatePooled() {
 		ObstacleGroup obstacleGroup = GameObject.Instantiate(this._obstaclePrefab);
-		obstacleGroup.Init(this._obstacleSpawnPoint.transform.position);
+		obstacleGroup.Init(this._obstacleSpawnPoint.transform.position, this._obstacleSpeed);
 		obstacleGroup.gameObject.SetActive(false);
 		
 		return obstacleGroup;

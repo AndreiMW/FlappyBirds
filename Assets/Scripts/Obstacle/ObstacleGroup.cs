@@ -16,12 +16,14 @@ namespace Obstacle {
 		private bool _shouldMove;
 		private Vector3 _spawnPoint;
 		public event Action<ObstacleGroup> OnOutOfBounds;
+
+		private int _speed;
 		
 		#region Lifecycle
 		
 		private void FixedUpdate() {
 			if (this._shouldMove) {
-				this.transform.position += Vector3.right * -4f * Time.fixedDeltaTime;	
+				this.transform.position += Vector3.right * -this._speed * Time.fixedDeltaTime;	
 			}
 		}
 		
@@ -33,9 +35,10 @@ namespace Obstacle {
 		/// Initialize the obstacle group.
 		/// </summary>
 		/// <param name="spawnPos">The spawn position of the group.</param>
-		public void Init(Vector3 spawnPos) {
+		public void Init(Vector3 spawnPos, int speed) {
 			this.transform.position = spawnPos;
 			this._spawnPoint = spawnPos;
+			this._speed = speed;
 		}
 
 		/// <summary>
