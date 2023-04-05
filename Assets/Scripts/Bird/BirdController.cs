@@ -6,6 +6,7 @@
  */
 
 using System;
+using Managers;
 using UnityEngine;
 
 namespace Scripts {
@@ -24,6 +25,23 @@ namespace Scripts {
 		private void Update() {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				this._rigidbody.AddForce(Vector3.up * this._jumpForce, ForceMode.Impulse);
+			}
+		}
+
+		#endregion
+		
+		#region Collision
+
+		private void OnTriggerEnter(Collider other) {
+			if (other.CompareTag("Score")) {
+				ScoreManager.Instance.AddScore();
+			}
+		}
+
+		private void OnCollisionEnter(Collision collision) {
+			if (collision.gameObject.CompareTag("Pipe")) {
+				Debug.Log("END");
+				ScoreManager.Instance.CompareCurrentScoreToHighScore();
 			}
 		}
 
